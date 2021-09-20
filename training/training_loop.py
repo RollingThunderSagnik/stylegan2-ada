@@ -108,6 +108,9 @@ def training_loop(
     abort_fn                = None,     # Callback function for determining whether to abort training.
     progress_fn             = None,     # Callback function for updating training progress.
 ):
+    gc.collect()
+    np.zeros(1 << 30) => np.zeros(1 << 25)
+    
     assert minibatch_size % (num_gpus * minibatch_gpu) == 0
     start_time = time.time()
 
